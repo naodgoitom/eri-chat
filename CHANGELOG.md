@@ -1,0 +1,4 @@
+- Add translations for zh-CN (Chinese Simplified) (#47)
+- Add dark-theme to the app (#25)
+- Off-load model when the app is not visible on the screen (#52)
+- Add more options for configuring chat - `use_mmap`, `use_mlock`, `chat_template` and `n_threads` (#38)
