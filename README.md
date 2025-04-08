@@ -1,4 +1,4 @@
-# SmolChat - On-Device Inference of SLMs in Android
+# EriChat - On-Device Inference of SLMs in Android
 
 <table>
 <tr>
@@ -43,11 +43,7 @@
 
 1. Clone the repository with its submodule originating from llama.cpp,
 
-```commandline
-git clone --depth=1 https://github.com/shubham0204/SmolChat-Android
-cd SmolChat-Android
-git submodule update --init --recursive
-```
+ Download or clone project
 
 2. Android Studio starts building the project automatically. If not, select **Build > Rebuild Project** to start a project build.
 
@@ -58,16 +54,8 @@ git submodule update --init --recursive
 1. The application uses llama.cpp to load and execute GGUF models. As llama.cpp is written in pure C/C++, it is easy 
    to compile on Android-based targets using the [NDK](https://developer.android.com/ndk). 
 
-2. The `smollm` module uses a `llm_inference.cpp` class which interacts with llama.cpp's C-style API to execute the 
-   GGUF model and a JNI binding `smollm.cpp`. Check the [C++ source files here](https://github.com/shubham0204/SmolChat-Android/tree/main/smollm/src/main/cpp). On the Kotlin side, the [`SmolLM`](https://github.com/shubham0204/SmolChat-Android/blob/main/smollm/src/main/java/io/shubham0204/smollm/SmolLM.kt) class provides 
-   the required methods to interact with the JNI (C++ side) bindings.
-
-3. The `app` module contains the application logic and UI code. Whenever a new chat is opened, the app instantiates 
-   the `SmolLM` class and provides it the model file-path which is stored by the [`LLMModel`](https://github.com/shubham0204/SmolChat-Android/blob/main/app/src/main/java/io/shubham0204/smollmandroid/data/DataModels.kt) entity in the ObjectBox.
-   Next, the app adds messages with role `user` and `system` to the chat by retrieving them from the database and
-   using `LLMInference::addChatMessage`.
-
-4. For tasks, the messages are not persisted, and we inform to `LLMInference` by passing `_storeChats=false` to
+  
+2. For tasks, the messages are not persisted, and we inform to `LLMInference` by passing `_storeChats=false` to
    `LLMInference::loadModel`.
 
 ## Technologies
@@ -85,23 +73,7 @@ git submodule update --init --recursive
   Markwon and [Prism4j](https://github.com/noties/Prism4j) (for code syntax highlighting) to render Markdown responses 
   from the SLMs.
 
-## More On-Device ML Projects
-
-- [shubham0204/Android-Doc-QA](https://github.com/shubham0204/Android-Document-QA): On-device RAG-based question 
-  answering from documents
-- [shubham0204/OnDevice-Face-Recognition-Android](https://github.com/shubham0204/OnDevice-Face-Recognition-Android): 
-  Realtime face recognition with FaceNet, Mediapipe and ObjectBox's vector database
-- [shubham0204/FaceRecognition_With_FaceNet_Android](https://github.com/shubham0204/OnDevice-Face-Recognition-Android):
-  Realtime face recognition with FaceNet, MLKit
-- [shubham0204/CLIP-Android](https://github.com/shubham0204/CLIP-Android): On-device CLIP inference in Android 
-  (search images with textual queries)
-- [shubham0204/Segment-Anything-Android](https://github.com/shubham0204/Segment-Anything-Android): Execute Meta's 
-  SAM model in Android with onnxruntime
-- [shubham0204/Depth-Anything-Android](https://github.com/shubham0204/Depth-Anything-Android): Execute the 
-  Depth-Anything model in Android with onnxruntime for monocular depth estimation
-- [shubham0204/Sentence-Embeddings-Android](https://github.com/shubham0204/Sentence-Embeddings-Android): Generate 
-  sentence-embeddings (from models like `all-MiniLM-L6-V2`) in Android
-
+ 
 ## Future
 
 The following features/tasks are planned for the future releases of the app:
